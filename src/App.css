@@ -1,0 +1,7 @@
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-light, #f8f9fa);
+  margin: 0;
+  padding: 0;
+}

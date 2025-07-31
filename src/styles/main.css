@@ -1,0 +1,72 @@
+:root {
+  --coffee-primary: #6f4e37;
+  --coffee-primary-dark: #5a3d2b;
+  --coffee-primary-light: #8b6f47;
+  --bg-light: #f8f9fa;
+  --bg-white: #ffffff;
+  --text-dark: #212529;
+  --text-muted: #6c757d;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
+  --shadow-lg: 0 8px 25px rgba(0,0,0,0.15);
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.3s ease-in-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-light);
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-smooth);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.btn-primary {
+  background-color: var(--coffee-primary);
+  border-color: var(--coffee-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--coffee-primary-dark);
+  border-color: var(--coffee-primary-dark);
+}
+
+.btn-outline-primary {
+  color: var(--coffee-primary);
+  border-color: var(--coffee-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--coffee-primary);
+  border-color: var(--coffee-primary);
+}
+
+.text-primary {
+  color: var(--coffee-primary) !important;
+}
+
+.spinner-border.text-primary {
+  color: var(--coffee-primary) !important;
+}
