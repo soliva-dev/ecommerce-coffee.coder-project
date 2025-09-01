@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
 import '../styles/components/NavBar.css';
 
-const NavBar = ({ cartItems, getTotalItems }) => {
+const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">☕ Coffee Shop</Link>
         
         <div className="d-flex align-items-center order-lg-3">
-          <CartWidget cartItems={cartItems} getTotalItems={getTotalItems} />
+          <CartWidget />
         </div>
         
         <button 

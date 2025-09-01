@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { cortarTexto } from '../utils/formatters.jsx';
 import '../styles/components/ItemCard.css';
 
 const Item = ({ product }) => {
@@ -8,7 +9,7 @@ const Item = ({ product }) => {
         <img src={product.image} className="card-img-top item-card-image" alt={product.name}/>
         <div className="card-body item-card-body">
           <h5 className="card-title item-card-title">{product.name}</h5>
-          <p className="card-text item-card-description">{product.description.length > 100 ? `${product.description.substring(0, 100)}...` : product.description}</p>
+          <p className="card-text item-card-description">{cortarTexto(product.description, 100)}</p>
           <div className="item-card-footer">
             <div className="d-flex justify-content-between align-items-center">
               <span className="item-price">${product.price}</span>

@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProducts, getProductsByCategory } from '../mock/products.jsx';
+import { productsService } from '../service/firebase';
+import { hacerMayuscula } from '../utils/formatters.jsx';
 import ItemList from './ItemList';
+import LoadingSpinner from './LoadingSpinner';
 import '../styles/components/Layout.css';
 
 const ItemListContainer = ({ greeting }) => {
@@ -12,31 +14,24 @@ const ItemListContainer = ({ greeting }) => {
   useEffect(() => {
     setLoading(true);
     
-    const fetchProducts = categoryId ? getProductsByCategory(categoryId) : getProducts();
-    
-    fetchProducts
-      .then(data => {
+    const fetchProducts = async () => {
+      try {
+        const data = categoryId 
+          ? await productsService.getProductsByCategory(categoryId)
+          : await productsService.getAllProducts();
         setProducts(data);
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error al cargar productos:', error);
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchProducts();
   }, [categoryId]);
 
   if (loading) {
-    return (
-      <div className="main-container">
-        <div className="loading-container">
-          <div className="spinner-border loading-spinner text-primary" role="status">
-            <span className="visually-hidden">Cargando...</span>
-          </div>
-          <p className="loading-text">Cargando productos...</p>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner message="Cargando productos..." />;
   }
 
   return (
@@ -106,7 +101,7 @@ const ItemListContainer = ({ greeting }) => {
       {categoryId && (
         <div className="category-header">
           <h3 className="category-title">
-            {categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}
+            {hacerMayuscula(categoryId)}
           </h3>
         </div>
       )}

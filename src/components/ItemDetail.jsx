@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import { hacerMayuscula } from '../utils/formatters.jsx';
 import ItemCount from './ItemCount';
 import '../styles/components/ItemDetail.css';
 
-const ItemDetail = ({ product, addToCart }) => {
+const ItemDetail = ({ product }) => {
   const [quantity, setQuantity] = useState(0);
+  const { addToCart } = useCart();
 
   const handleOnAdd = (count) => {
     setQuantity(count);
@@ -23,7 +26,7 @@ const ItemDetail = ({ product, addToCart }) => {
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item"><Link to="/">Inicio</Link></li>
-              <li className="breadcrumb-item"><Link to={`/category/${product.category}`}>{product.category.charAt(0).toUpperCase() + product.category.slice(1)}</Link></li>
+              <li className="breadcrumb-item"><Link to={`/category/${product.category}`}>{hacerMayuscula(product.category)}</Link></li>
               <li className="breadcrumb-item active" aria-current="page">{product.name}</li>
             </ol>
           </nav>
@@ -41,8 +44,8 @@ const ItemDetail = ({ product, addToCart }) => {
           
           <div className="item-detail-actions">
             {quantity === 0 ? (
-              <ItemCount stock={product.stock} initial={1} onAdd={handleOnAdd}/>)
-              : (
+              <ItemCount stock={product.stock} initial={1} onAdd={handleOnAdd}/>
+            ) : (
               <div>
                 <div className="success-message" role="alert">¡Agregaste {quantity} unidades al carrito!</div>
                 <Link to="/" className="btn btn-outline-primary me-2">Seguir Comprando</Link>

@@ -25,14 +25,14 @@ const ItemCount = ({ stock, initial, onAdd }) => {
   return (
     <div className="item-count-container">
       <div className="count-controls">
-        <button className="count-button"onClick={decrement}disabled={count <= 1}>-</button>
-        
+        <button className="count-button" onClick={decrement} disabled={count <= 1}>-</button>
         <span className="count-display">{count}</span>
-        
-        <button className="count-button"onClick={increment}disabled={count >= stock}>+</button>
+        <button className="count-button" onClick={increment} disabled={count >= stock}>+</button>
       </div>
 
-      <button className="btn btn-primary add-to-cart-btn" onClick={handleAddToCart} disabled={stock === 0}>{stock === 0 ? 'Sin Stock' : 'Agregar al Carrito'}</button>
+      <button className="btn btn-primary add-to-cart-btn" onClick={handleAddToCart} disabled={stock === 0}>
+        {stock === 0 ? 'Sin Stock' : 'Agregar al Carrito'}
+      </button>
 
       {stock > 0 && (
         <div className="stock-info">Stock disponible: {stock} unidades</div>

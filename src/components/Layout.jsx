@@ -2,10 +2,10 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import '../styles/components/Layout.css';
 
-const Layout = ({ children, cartItems, getTotalItems }) => {
+const Layout = ({ children }) => {
   return (
     <div className="app-container">
-      <NavBar cartItems={cartItems} getTotalItems={getTotalItems} />
+      <NavBar />
       <main className="main-content">
         {children}
       </main>

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProductById } from '../mock/products.jsx';
+import { productsService } from '../service/firebase';
 import ItemDetail from './ItemDetail';
+import LoadingSpinner from './LoadingSpinner';
 import '../styles/components/Layout.css';
 
-const ItemDetailContainer = ({ addToCart }) => {
+const ItemDetailContainer = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const { itemId } = useParams();
@@ -12,29 +13,22 @@ const ItemDetailContainer = ({ addToCart }) => {
   useEffect(() => {
     setLoading(true);
     
-    getProductById(itemId)
-      .then(data => {
+    const fetchProduct = async () => {
+      try {
+        const data = await productsService.getProductById(itemId);
         setProduct(data);
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error al cargar el producto:', error);
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchProduct();
   }, [itemId]);
 
   if (loading) {
-    return (
-      <div className="main-container">
-        <div className="loading-container">
-          <div className="spinner-border loading-spinner text-primary" role="status">
-            <span className="visually-hidden">Cargando...</span>
-          </div>
-          <p className="loading-text">Cargando producto...</p>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner message="Cargando producto..." />;
   }
 
   if (!product) {
@@ -50,7 +44,7 @@ const ItemDetailContainer = ({ addToCart }) => {
 
   return (
     <div className="main-container content-container fade-in">
-      <ItemDetail product={product} addToCart={addToCart} />
+      <ItemDetail product={product} />
     </div>
   );
 };
