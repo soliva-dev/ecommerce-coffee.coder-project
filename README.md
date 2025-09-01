@@ -27,7 +27,6 @@ Coffee Shop es una aplicación web de comercio electrónico especializada en la 
 
 - **Backend:**
   - Firebase Firestore
-  - Firebase Hosting
 
 - **Herramientas:**
   - ESLint
