@@ -50,12 +50,12 @@ Coffee Shop es una aplicación web de comercio electrónico especializada en la 
    - Crea un archivo `.env` en la raíz del proyecto
    - Agrega tu configuración de Firebase:
    ```env
-   VITE_FIREBASE_API_KEY=tu-api-key
-   VITE_FIREBASE_AUTH_DOMAIN=tu-proyecto.firebaseapp.com
-   VITE_FIREBASE_PROJECT_ID=tu-project-id
-   VITE_FIREBASE_STORAGE_BUCKET=tu-proyecto.appspot.com
-   VITE_FIREBASE_MESSAGING_SENDER_ID=tu-sender-id
-   VITE_FIREBASE_APP_ID=tu-app-id
+   VITE_FIREBASE_API_KEY=api-key
+   VITE_FIREBASE_AUTH_DOMAIN=proyecto.firebaseapp.com
+   VITE_FIREBASE_PROJECT_ID=project-id
+   VITE_FIREBASE_STORAGE_BUCKET=proyecto.appspot.com
+   VITE_FIREBASE_MESSAGING_SENDER_ID=sender-id
+   VITE_FIREBASE_APP_ID=app-id
    ```
 
 4. **Inicia el servidor de desarrollo:**
